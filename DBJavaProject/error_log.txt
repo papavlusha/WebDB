@@ -1,0 +1,37 @@
+Exception occurred at 2023-10-26 14:53:18:
+java.util.InputMismatchException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:947)
+	at java.base/java.util.Scanner.next(Scanner.java:1602)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2267)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2221)
+	at lab_2.Main.main(Main.java:83)
+Exception occurred at 2023-10-26 15:42:25:
+java.lang.ClassNotFoundException: 
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:421)
+	at java.base/java.lang.Class.forName(Class.java:412)
+	at lab_2.ConnectionPool.initializePool(ConnectionPool.java:33)
+	at lab_2.ConnectionPool.<clinit>(ConnectionPool.java:19)
+	at controller.FilmRepository.<init>(FilmRepository.java:30)
+	at lab_2.Main.main(Main.java:23)
+Exception occurred at 2023-10-26 15:42:41:
+java.lang.ClassNotFoundException: 
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:421)
+	at java.base/java.lang.Class.forName(Class.java:412)
+	at lab_2.ConnectionPool.initializePool(ConnectionPool.java:33)
+	at lab_2.ConnectionPool.<clinit>(ConnectionPool.java:19)
+	at controller.FilmRepository.<init>(FilmRepository.java:30)
+	at lab_2.Main.main(Main.java:23)
+Exception occurred at 2023-10-26 15:44:02:
+java.lang.ClassNotFoundException: "org.sqlite.JDBC"
+	at java.base/jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641)
+	at java.base/jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188)
+	at java.base/java.lang.ClassLoader.loadClass(ClassLoader.java:526)
+	at java.base/java.lang.Class.forName0(Native Method)
+	at java.base/java.lang.Class.forName(Class.java:421)
+	at java.base/java.lang.Class.forName(Class.java:412)
+	at lab_2.ConnectionPool.initializePool(ConnectionPool.java:33)
+	at lab_2.ConnectionPool.<clinit>(ConnectionPool.java:19)
+	at controller.FilmRepository.<init>(FilmRepository.java:30)
+	at lab_2.Main.main(Main.java:23)

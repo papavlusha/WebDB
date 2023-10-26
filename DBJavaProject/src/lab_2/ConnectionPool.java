@@ -3,62 +3,69 @@ package lab_2;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.ResourceBundle;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
+
+import static Logger.LogManager.logException;
+
 public class ConnectionPool {
-    private static final int MAX_POOL_SIZE = 10;
-    private static final String URL = "jdbc:sqlite:/home/pawel/BSU/trash/films.db";
-    private static final String USER = "your_username";
-    private static final String PASSWORD = "your_password";
-    
-    private static ConnectionPool instance;
-    private Queue<Connection> connectionQueue;
-    private Lock lock;
-    
-    private ConnectionPool() {
-        connectionQueue = new LinkedList<>();
-        lock = new ReentrantLock();
-    }
-    
-    public static synchronized ConnectionPool getInstance() {
-        if (instance == null) {
-            instance = new ConnectionPool();
-        }
-        return instance;
-    }
-    
-    public Connection getConnection() throws SQLException {
-        lock.lock();
+    private static BlockingQueue<Connection> connectionPool;
+    private static int INITIAL_POOL_SIZE = 10;
+
+    static {
+        connectionPool = new ArrayBlockingQueue<>(INITIAL_POOL_SIZE);
         try {
-            if (connectionQueue.isEmpty()) {
-                return createConnection();
-            } else {
-                return connectionQueue.poll();
-            }
-        } finally {
-            lock.unlock();
+            initializePool();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
-    
-    public void releaseConnection(Connection connection) {
-        lock.lock();
+
+    private static void initializePool() throws Exception {
+        ResourceBundle resource = ResourceBundle.getBundle("database");
+        String driver = resource.getString("driver");
+        String user = resource.getString("username");
+        String url = resource.getString("url");
+        String password = resource.getString("password");
+
         try {
-            if (connectionQueue.size() < MAX_POOL_SIZE) {
-                connectionQueue.offer(connection);
-            } else {
-                connection.close();
+            Class.forName(driver).newInstance();
+        } catch (ClassNotFoundException e) {
+            logException(e);
+            throw new Exception ("Драйвер не загружен!");
+        } catch (InstantiationException | IllegalAccessException e) {
+            logException(e);
+            throw new Exception(e.getMessage());
+        }
+
+        for (int i = 0; i < INITIAL_POOL_SIZE; i++) {
+            try {
+                Connection connection = DriverManager.getConnection(url, user, password);
+                if (connectionPool.add(connection)) {
+                    continue;
+                }
+                Exception e = new Exception("Can't add connection to pool");
+                logException(e);
+                throw e;
+            } catch (SQLException e) {
+                logException(e);
+                throw new Exception("Error creating database connections.");
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            lock.unlock();
         }
     }
-    
-    private Connection createConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+
+    public static Connection GetConnection() throws Exception {
+        try {
+            return connectionPool.take();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            logException(e);
+            throw new Exception("Interrupted while waiting for a connection.");
+        }
+    }
+
+    public static boolean ReleaseConnection(Connection connection) {
+        return connectionPool.add(connection);
     }
 }

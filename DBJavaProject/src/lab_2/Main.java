@@ -14,6 +14,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.text.ParseException;
 
+
+import javax.security.auth.login.LoginException;
+import static Logger.LogManager.logException;
 public class Main {
 
 	public static void main(String[] args) {
@@ -75,15 +78,23 @@ public class Main {
 					System.out.print("Enter film title: ");
 					String title = scanner.next();
 					System.out.print("Enter release year: ");
-					int releaseDate = scanner.nextInt();
-					System.out.print("Enter country: ");
-					String country = scanner.next();
-					System.out.print("Enter rating: ");
-					int rating = scanner.nextInt();
-					System.out.print("Enter director id: ");
-					int directorId = scanner.nextInt();
-					System.out.print("Enter actor id (separated by commas): ");
-					String actorIdsString = scanner.next();
+					int releaseDate = 0;
+					String actorIdsString, country;
+					int rating, directorId;
+					try {
+						releaseDate = scanner.nextInt();
+						System.out.print("Enter country: ");
+						country = scanner.next();
+						System.out.print("Enter rating: ");
+						rating = scanner.nextInt();
+						System.out.print("Enter director id: ");
+						directorId = scanner.nextInt();
+						System.out.print("Enter actor id (separated by commas): ");
+						actorIdsString = scanner.next();
+					} catch (Exception e) {
+						logException(e);
+						break;
+					}
 					String[] actorIdsArr = actorIdsString.split(",");
 					List<Integer> actorIds = new ArrayList<>();
 					for (String actorIdStr : actorIdsArr) {
@@ -99,9 +110,20 @@ public class Main {
 					break;
 				case 9:
 					System.out.print("Enter film id: ");
-					int updateFilmId = scanner.nextInt();
+					int newRating;
+					int updateFilmId;
+
+					try {
+						updateFilmId = scanner.nextInt();
+
 					System.out.print("Enter new rating: ");
-					int newRating = scanner.nextInt();
+					newRating = scanner.nextInt();
+
+					}
+					catch (Exception e) {
+						logException(e);
+						break;
+					}
 					filmRepo.updateFilmRating(updateFilmId, newRating);
 					break;
 				case 0:
@@ -112,6 +134,7 @@ public class Main {
 			}
 		} while (!exit);
 		scanner.close();
+
 	}
 
 }

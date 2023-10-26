@@ -14,9 +14,12 @@ import DaoPackage.DAOFilm;
 import entities.Actor;
 import entities.Director;
 import entities.Film;
+import lab_2.ConnectionPool;
+
+import static Logger.LogManager.logException;
 
 public class FilmRepository {
-
+	protected ConnectionPool cnr;
 	private DAOActor daoActor;
 	public DAODirector daoDirector;
 	private DAOFilm daoFilm;
@@ -24,12 +27,13 @@ public class FilmRepository {
 	public FilmRepository() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			Connection connection = DriverManager.getConnection("jdbc:sqlite:/home/pawel/BSU/web/3d_year/WebDB/DBJavaProject/films.db");
+			cnr = new ConnectionPool();
 			System.out.println("Connection to SQLite has been established.");
-			daoActor = new DAOActor(connection);
-			daoDirector = new DAODirector(connection);
-			daoFilm = new DAOFilm(connection);
+			daoActor = new DAOActor();
+			daoDirector = new DAODirector();
+			daoFilm = new DAOFilm();
 		} catch (Exception e) {
+			logException(e);
 			e.printStackTrace();
 			System.exit(0);
 		}
@@ -49,6 +53,7 @@ public class FilmRepository {
 						+ directors.get(item.getDirectorId() - 1).getName());
 			}
 		} catch (SQLException e) {
+			logException(e);
 			e.printStackTrace();
 		}
 	}
@@ -57,6 +62,7 @@ public class FilmRepository {
 		try {
 			return daoFilm.getFilmById(id);
 		} catch (SQLException e) {
+			logException(e);
 			e.printStackTrace();
 			return null;
 		}
@@ -77,6 +83,7 @@ public class FilmRepository {
 				System.out.println(item.getName() + " " + item.getDate());
 			}
 		} catch (SQLException e) {
+			logException(e);
 			e.printStackTrace();
 		}
 	}
@@ -97,6 +104,7 @@ public class FilmRepository {
 						+ directors.get(item.getDirectorId() - 1).getName());
 			}
 		} catch (SQLException e) {
+			logException(e);
 			e.printStackTrace();
 		}
 	}
@@ -114,6 +122,7 @@ public class FilmRepository {
 				System.out.println(item.getName() + " " + item.getDate());
 			}
 		} catch (SQLException e) {
+			logException(e);
 			e.printStackTrace();
 		}
 	}
@@ -123,6 +132,7 @@ public class FilmRepository {
 			List<Director> directors = daoDirector.getAllDirectors();
 			return daoDirector.getAllDirectors();
 		} catch (SQLException e) {
+			logException(e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -139,6 +149,7 @@ public class FilmRepository {
 			}
 
 		} catch (SQLException e) {
+			logException(e);
 			e.printStackTrace();
 		}
 	}
@@ -148,6 +159,7 @@ public class FilmRepository {
 		try {
 			daoFilm.createFilm(film);
 		} catch (SQLException e) {
+			logException(e);
 			e.printStackTrace();
 		}
 	}
@@ -168,6 +180,7 @@ public class FilmRepository {
 				}
 			});
 		} catch (SQLException e) {
+			logException(e);
 			e.printStackTrace();
 		}
 	}
@@ -183,6 +196,7 @@ public class FilmRepository {
 			filmToUpdate.setRating(rating);
 			daoFilm.updateFilm(filmToUpdate);
 		} catch (SQLException e) {
+			logException(e);
 			e.printStackTrace();
 		}
 	}
