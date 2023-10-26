@@ -14,14 +14,7 @@ import static Logger.LogManager.logException;
 public class DAOFilm {
 	private Connection connection;
 
-	public DAOFilm() {
-//		this.connection = conn;
-//		if (conn != null) {
-//			System.out.println("\nConnection successful!\n");
-//		} else {
-//			System.out.println("\nConnection failed\n");
-//		}
-	}
+	public DAOFilm() {}
 
 	// запрос на добавление фильма
 	public void createFilm(Film film) throws SQLException {
@@ -171,7 +164,6 @@ public class DAOFilm {
 		try {
 			connection = ConnectionPool.GetConnection();
 			String sql = "DELETE FROM films WHERE id = ?";
-
 			PreparedStatement ps = this.connection.prepareStatement(sql);
 			ps.setInt(1, id);
 			ps.executeUpdate();

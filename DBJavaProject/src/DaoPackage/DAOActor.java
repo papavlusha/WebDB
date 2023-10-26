@@ -10,14 +10,7 @@ import static Logger.LogManager.logException;
 public class DAOActor {
 	private Connection connection;
 
-	public DAOActor() {
-//		if (conn != null) {
-//		//	System.out.println("\nConnection successful!\n");
-//		} else {
-//			System.out.println("\nVi loshara bez db\n");
-//		}
-//
-	}
+	public DAOActor() {}
 
 	public void addActor(Actor actor) throws SQLException {
 

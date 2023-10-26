@@ -10,14 +10,7 @@ import static Logger.LogManager.logException;
 public class DAODirector {
 	private Connection connection;
 
-	public DAODirector() {
-//		this.connection = conn;
-//		if (conn != null) {
-////        	System.out.println("\nConnection successful!\n");
-//		} else {
-//			System.out.println("\nVi loshara bez db\n");
-//		}
-	}
+	public DAODirector() {}
 
 	public void addDirector(Director director) throws SQLException {
 		try {

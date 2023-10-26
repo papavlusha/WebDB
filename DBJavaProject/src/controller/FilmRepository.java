@@ -27,7 +27,6 @@ public class FilmRepository {
 	public FilmRepository() {
 		try {
 			Class.forName("org.sqlite.JDBC");
-			cnr = new ConnectionPool();
 			System.out.println("Connection to SQLite has been established.");
 			daoActor = new DAOActor();
 			daoDirector = new DAODirector();
@@ -196,6 +195,7 @@ public class FilmRepository {
 			filmToUpdate.setRating(rating);
 			daoFilm.updateFilm(filmToUpdate);
 		} catch (SQLException e) {
+
 			logException(e);
 			e.printStackTrace();
 		}
