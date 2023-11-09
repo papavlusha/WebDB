@@ -1,0 +1,64 @@
+2023-11-09 17:58:12,963 ERROR L.LogManager [main] Exception occurred
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Scanner.java:947) ~[?:?]
+	at java.util.Scanner.next(Scanner.java:1602) ~[?:?]
+	at java.util.Scanner.nextInt(Scanner.java:2267) ~[?:?]
+	at java.util.Scanner.nextInt(Scanner.java:2221) ~[?:?]
+	at lab_2.Main.main(Main.java:114) [DBJavaProject/:?]
+2023-11-09 17:58:12,971 ERROR L.LogManager [main] Exception occurred
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Scanner.java:947) ~[?:?]
+	at java.util.Scanner.next(Scanner.java:1602) ~[?:?]
+	at java.util.Scanner.nextInt(Scanner.java:2267) ~[?:?]
+	at java.util.Scanner.nextInt(Scanner.java:2221) ~[?:?]
+	at lab_2.Main.main(Main.java:37) [DBJavaProject/:?]
+2023-11-09 17:58:41,386 ERROR L.LogManager [main] Exception occurred
+java.lang.ClassNotFoundException: org.sqlite.JDB
+	at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[?:?]
+	at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[?:?]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:421) ~[?:?]
+	at java.lang.Class.forName(Class.java:412) ~[?:?]
+	at lab_2.ConnectionPool.initializePool(ConnectionPool.java:33) [DBJavaProject/:?]
+	at lab_2.ConnectionPool.<clinit>(ConnectionPool.java:19) [DBJavaProject/:?]
+	at controller.FilmRepository.<init>(FilmRepository.java:30) [DBJavaProject/:?]
+	at lab_2.Main.main(Main.java:20) [DBJavaProject/:?]
+2023-11-09 17:59:37,456 ERROR L.LogManager [main] Exception occurred
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Scanner.java:947) ~[?:?]
+	at java.util.Scanner.next(Scanner.java:1602) ~[?:?]
+	at java.util.Scanner.nextInt(Scanner.java:2267) ~[?:?]
+	at java.util.Scanner.nextInt(Scanner.java:2221) ~[?:?]
+	at lab_2.Main.main(Main.java:114) [DBJavaProject/:?]
+2023-11-09 17:59:37,463 ERROR L.LogManager [main] Exception occurred
+java.util.InputMismatchException: null
+	at java.util.Scanner.throwFor(Scanner.java:947) ~[?:?]
+	at java.util.Scanner.next(Scanner.java:1602) ~[?:?]
+	at java.util.Scanner.nextInt(Scanner.java:2267) ~[?:?]
+	at java.util.Scanner.nextInt(Scanner.java:2221) ~[?:?]
+	at lab_2.Main.main(Main.java:37) [DBJavaProject/:?]
+2023-11-09 18:01:31,637 ERROR L.LogManager [main] Exception occurred
+java.lang.ClassNotFoundException: org.sqlite.JDB
+	at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[?:?]
+	at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[?:?]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:421) ~[?:?]
+	at java.lang.Class.forName(Class.java:412) ~[?:?]
+	at lab_2.ConnectionPool.initializePool(ConnectionPool.java:33) [DBJavaProject/:?]
+	at lab_2.ConnectionPool.<clinit>(ConnectionPool.java:19) [DBJavaProject/:?]
+	at controller.FilmRepository.<init>(FilmRepository.java:30) [DBJavaProject/:?]
+	at lab_2.Main.main(Main.java:20) [DBJavaProject/:?]
+2023-11-09 18:01:49,761 ERROR L.LogManager [main] Exception occurred
+java.lang.ClassNotFoundException: org.sqlite.JDB
+	at jdk.internal.loader.BuiltinClassLoader.loadClass(BuiltinClassLoader.java:641) ~[?:?]
+	at jdk.internal.loader.ClassLoaders$AppClassLoader.loadClass(ClassLoaders.java:188) ~[?:?]
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:526) ~[?:?]
+	at java.lang.Class.forName0(Native Method) ~[?:?]
+	at java.lang.Class.forName(Class.java:421) ~[?:?]
+	at java.lang.Class.forName(Class.java:412) ~[?:?]
+	at lab_2.ConnectionPool.initializePool(ConnectionPool.java:33) [DBJavaProject/:?]
+	at lab_2.ConnectionPool.<clinit>(ConnectionPool.java:19) [DBJavaProject/:?]
+	at controller.FilmRepository.<init>(FilmRepository.java:30) [DBJavaProject/:?]
+	at lab_2.Main.main(Main.java:20) [DBJavaProject/:?]

@@ -37,6 +37,8 @@ public class ConnectionPool {
         } catch (InstantiationException | IllegalAccessException e) {
             logException(e);
             throw new Exception(e.getMessage());
+        } catch (Exception e) {
+            return;
         }
 
         for (int i = 0; i < INITIAL_POOL_SIZE; i++) {

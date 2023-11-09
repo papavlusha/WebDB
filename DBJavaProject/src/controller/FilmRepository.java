@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import DaoPackage.DAOActor;
@@ -26,14 +27,16 @@ public class FilmRepository {
 
 	public FilmRepository() {
 		try {
-			Class.forName("org.sqlite.JDBC");
+			ConnectionPool cnr = new ConnectionPool();
+			ResourceBundle resource = ResourceBundle.getBundle("database");
+			Class.forName(resource.getString("driver"));
 			System.out.println("Connection to SQLite has been established.");
 			daoActor = new DAOActor();
 			daoDirector = new DAODirector();
 			daoFilm = new DAOFilm();
-		} catch (Exception e) {
+		} catch (ClassNotFoundException e) {
 			logException(e);
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.exit(0);
 		}
 	}
@@ -47,7 +50,7 @@ public class FilmRepository {
 			List<Director> directors = daoDirector.getAllDirectors();
 			directors.toArray();
 			for (Film item : films) {
-				System.out.println(item.getTitle() + " -rating:" + item.getRating() + ", country:" + item.getCountry()
+				System.out.println(item.getTitle() + '('+ item.getId() +") -rating:" + item.getRating() + ", country:"+ item.getCountry()
 						+ ", year:" + item.getReleaseDate() + ", director:"
 						+ directors.get(item.getDirectorId() - 1).getName());
 			}
@@ -98,7 +101,7 @@ public class FilmRepository {
 			List<Director> directors = daoDirector.getAllDirectors();
 			directors.toArray();
 			for (Film item : topRatedFilms) {
-				System.out.println(item.getTitle() + " -rating:" + item.getRating() + ", country:"+ item.getCountry()
+				System.out.println(item.getTitle() + '('+ item.getId() +") -rating:" + item.getRating() + ", country:"+ item.getCountry()
 						+ ", year:" + item.getReleaseDate() + ", director:"
 						+ directors.get(item.getDirectorId() - 1).getName());
 			}
@@ -184,7 +187,7 @@ public class FilmRepository {
 		}
 	}
 
-	// Администратор обновляет информацию о рейтинге фильмов
+
 	public void updateFilmRating(int filmId, int rating) {
 		try {
 			Film filmToUpdate = daoFilm.getFilmById(filmId);
@@ -195,7 +198,6 @@ public class FilmRepository {
 			filmToUpdate.setRating(rating);
 			daoFilm.updateFilm(filmToUpdate);
 		} catch (SQLException e) {
-
 			logException(e);
 			e.printStackTrace();
 		}

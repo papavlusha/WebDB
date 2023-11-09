@@ -13,7 +13,6 @@ public class DAOActor {
 	public DAOActor() {}
 
 	public void addActor(Actor actor) throws SQLException {
-
 		try {
 			connection = ConnectionPool.GetConnection();
 			String sql = "INSERT INTO actors(name, birth_date) VALUES(?, ?)";
